@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Test Join</title>
+		<script src="http://mbostock.github.com/d3/d3.v2.min.js?2.8.1"></script>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	</head>
+	<body>
+	</body>
+	<script>
+		var chart = d3.select("body").append("svg");
+
+		function draw(data) {
+			console.log("Data:", data)
+
+			var circle = chart.selectAll("circle").data(data);
+
+			circle
+			.enter().append("circle")
+			.attr("cx", 100)
+			.attr("cy", function(d) { return (2*d)+10; })
+			.attr("r", function(d) { return d; });
+
+			circle
+			.exit()
+			.remove();
+		};
+
+		draw([10]);
+
+		setTimeout(function() { draw([50]) }, 3000);
+		setTimeout(function() { draw([25]) }, 6000);
+	</script>
+</html>
+
